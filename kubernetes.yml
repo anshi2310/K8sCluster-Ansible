@@ -5,7 +5,7 @@
 
     tasks:
       - name: Install a list of packages
-        shell: "{{ item }}"
+        yum: "{{ item }}"
         with_items:
         - yum update
         - yum install -y yum-utils git wget net-tools vim zip lsof nc
@@ -19,7 +19,7 @@
           enabled: false
           
       - name: Installing Docker Prerequisite packages
-        shell: "{{ item }}"
+        yum: "{{ item }}"
         with_items:
         - yum install -y yum-utils device-mapper-persistent-data lvm2
 
