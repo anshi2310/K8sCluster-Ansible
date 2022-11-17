@@ -41,7 +41,7 @@
          enabled: yes
          
       - name: Helm Installation
-        shell: "{{ item }}"
+        yum: "{{ item }}"
         with_items:
         - wget https://get.helm.sh/helm-v3.10.1-linux-amd64.tar.gz
         - tar -zxvf helm-v3.10.1-linux-amd64.tar.gz
