@@ -40,13 +40,6 @@
          state: started
          enabled: yes
          
-      - name: Helm Installation
-        yum: "{{ item }}"
-        with_items:
-        - wget https://get.helm.sh/helm-v3.10.1-linux-amd64.tar.gz
-        - tar -zxvf helm-v3.10.1-linux-amd64.tar.gz
-        - mv linux-amd64/helm /usr/local/bin/helm
-        - /usr/local/bin/helm version
         
       - name: disable SELinux
         command: setenforce 0
@@ -92,6 +85,14 @@
          name: kubelet
          enabled: yes
          state: started
+         
+      - name: Helm Installation
+        yum: "{{ item }}"
+        with_items:
+        - wget https://get.helm.sh/helm-v3.10.1-linux-amd64.tar.gz
+        - tar -zxvf helm-v3.10.1-linux-amd64.tar.gz
+        - mv linux-amd64/helm /usr/local/bin/helm
+        - /usr/local/bin/helm version
        
   - hosts: masters
     become: yes
