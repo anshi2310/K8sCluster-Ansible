@@ -48,15 +48,6 @@
         selinux:
           state: disabled
 
-      - name: Disabling Swap on all nodes
-        shell: swapoff -a
-
-
-      - name: Commenting Swap entries in /etc/fstab
-        replace:
-          path: /etc/fstab
-          regexp: '(.*swap*)'
-          replace: '#\1'
           
       - name: add Kubernetes' YUM repository
         yum_repository:
@@ -85,6 +76,16 @@
          name: kubelet
          enabled: yes
          state: started
+         
+      - name: Disabling Swap on all nodes
+        shell: swapoff -a
+
+
+      - name: Commenting Swap entries in /etc/fstab
+        replace:
+          path: /etc/fstab
+          regexp: '(.*swap*)'
+          replace: '#\1'
          
       - name: Helm Installation
         yum: "{{ item }}"
